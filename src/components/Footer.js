@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="flex justify-end content-center  w-auto p-3">
+    <footer className="flex justify-center content-center  w-auto p-3">
       <h4 className="text-center text-gray-300 tracking-widest">
         Oluwatobiloba &copy; {new Date().getFullYear()}
       </h4>
