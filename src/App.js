@@ -18,7 +18,7 @@ function App() {
         setImages(data.results);
         setIsLoading(false);
       })
-      .catch((err) => console.err(err));
+      .catch((err) => console.log(err));
   }, [term]);
   return (
     <>
@@ -75,7 +75,11 @@ function App() {
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3">
             {images.map((image) => (
-              <ImageCard key={image.id} image={image} />
+              <ImageCard
+                key={image.id}
+                image={image}
+                searchText={(text) => setTerm(text)}
+              />
             ))}
           </div>
         )}

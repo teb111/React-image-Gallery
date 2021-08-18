@@ -3,14 +3,32 @@ import React, { useState } from "react";
 const ImageSearch = ({ searchText }) => {
   const [text, setText] = useState("");
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  function debounce(func, wait = 20, immediate = true) {
+    var timeout;
+    return function () {
+      var context = this,
+        args = arguments;
+      var later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
 
+  const submitHandler = (e) => {
+    e.preventDefault();
     searchText(text);
   };
+
+  const debouncedfunction = debounce(submitHandler, 3000);
+
   return (
     <div className="max-w-sm rounded overflow-hidden my-10 mx-auto">
-      <form onSubmit={onSubmitHandler} className="w-full max-w-sm">
+      <form onKeyUp={debouncedfunction} className="w-full max-w-sm">
         <div className="flex items-center border-b-2 border-teal-500 py-2">
           <input
             className="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none"

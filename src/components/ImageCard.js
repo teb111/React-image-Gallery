@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ImageCard = ({ image, alt }) => {
+const ImageCard = ({ image, searchText }) => {
+  const [text, setText] = useState("");
+
+  const submitText = (text) => {
+    searchText(text.substring(1));
+  };
   return (
     <figure className="bg-gray-100 rounded p-8 shadow-lg overflow-hidden mx-4  lg:max-w-2xl lg:h-auto">
       <img
@@ -23,19 +28,31 @@ const ImageCard = ({ image, alt }) => {
           </ul>
         </figcaption>
         <div className="flex p-2 md:inline-block ">
-          <span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-light text-gray-700 mr-2 md:hidden">
+          <span
+            onClick={(e) => submitText(e.target.innerText)}
+            className=" transition-all inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-light hover:underline text-gray-700 mr-2 md:hidden"
+            style={{ cursor: "pointer" }}
+          >
             #{image.tags[0].title}
           </span>
-          <span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-light text-gray-700 mr-2 md:m-2">
+          <span
+            onClick={(e) => submitText(e.target.innerText)}
+            className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-light hover:underline text-gray-700 mr-2 md:m-2"
+            style={{ cursor: "pointer" }}
+          >
             #{image.tags[1].title}
           </span>
-          <span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-light text-gray-700 mr-2 md:hidden">
+          <span
+            onClick={(e) => submitText(e.target.innerText)}
+            className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-light hover:underline text-gray-700 mr-2 md:hidden"
+            style={{ cursor: "pointer" }}
+          >
             #{image.tags[2].title}
           </span>
         </div>
 
         <a
-          className="block text-center rounded-lg p-4 transition hover:bg-gray-800 ease-in-out duration-700 bg-gray-300 tracking-wider border border-gray-600 w-full"
+          className="block text-center rounded-lg p-4 transition hover:bg-gray-800  hover:text-gray-100 ease-in-out duration-700 bg-gray-300 tracking-wider border border-gray-600 w-full"
           href={image.links.html}
           target="_blank"
           rel="noreferrer"
