@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Footer from "./components/Footer";
 import ImageCard from "./components/ImageCard";
 import ImageSearch from "./components/ImageSearch";
 import Loader from "./components/Loader";
@@ -23,45 +24,7 @@ function App() {
   return (
     <>
       <div className="container p-2 mx-auto">
-        <header className="flex justify-end content-center  w-auto p-3">
-          <h4 className="text-center text-gray-300 tracking-wider">
-            Oluwatobiloba &copy; {new Date().getFullYear()}
-          </h4>
-          <ul>
-            <li>
-              <ul class="flex justify-center content-center">
-                <li className="transition duration-700 ease-in-out pl-2 pr-2 text-gray-200 hover:text-gray-500">
-                  <a
-                    href="https://twitter.com/oluwa_toobi"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li className="transition duration-700 ease-in-out pr-2 text-gray-200 hover:text-gray-500">
-                  <a
-                    href="https://github.com/teb111"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i class="fa fa-github"></i>
-                  </a>
-                </li>
-                <li className="transition duration-700 ease-in-out text-gray-200 hover:text-gray-500">
-                  <a
-                    href="https://www.instagram.com/_t.e_b/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <i class="fa fa-instagram"></i>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </header>
-        <ImageSearch searchText={(text) => setTerm(text)} />
+        <ImageSearch searchText={(text) => setTerm(text)} term={term} />
 
         {!isLoading && images.length === 0 && (
           <h1 className="flex content-center justify-center tracking-wider text-gray-400 text-4xl">
@@ -83,6 +46,7 @@ function App() {
             ))}
           </div>
         )}
+        <Footer />
       </div>
     </>
   );

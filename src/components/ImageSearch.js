@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ImageSearch = ({ searchText }) => {
+const ImageSearch = ({ searchText, term }) => {
   const [text, setText] = useState("");
 
   function debounce(func, wait = 20, immediate = true) {
@@ -34,6 +34,7 @@ const ImageSearch = ({ searchText }) => {
             className="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none"
             type="text"
             placeholder="Search any Image"
+            value={term === "random" ? "" : term}
             onChange={(e) => setText(e.target.value)}
           />
           <button
