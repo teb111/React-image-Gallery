@@ -10,7 +10,7 @@ function App() {
   const [term, setTerm] = useState("random");
 
   useEffect(() => {
-    // endpoint
+    // endpoint api
     fetch(
       `https://api.unsplash.com/search/photos?query=${term}&client_id=${process.env.REACT_APP_CLIENT_ID}&per_page=30`
     )
